@@ -6,7 +6,6 @@
 body{
     width: 100%;
     height: 100vh;
-    overflow: hidden;
 
 }
 .pre-loader{
@@ -19,6 +18,8 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    animation:loaderBgAnim 0.5s ease-in-out forwards;
+    animation-delay: 1s;
 }
 .pre-loader .loader-wrapper{
     width: 200px;
@@ -26,9 +27,11 @@ body{
     border-radius: 5px;
     z-index: 1;
     position: relative;
+    transform: rotate(-20deg);
+    z-index: 1;
     overflow: hidden;
-    transform: rotate(-40deg);
-
+    animation: rotatAnim  .5s ease-in-out forwards ;
+    animation-delay: .5s;
 }
 .loader-wrapper .loader{
     width: 250px;
@@ -36,7 +39,50 @@ body{
     background-image: linear-gradient(to left, #f43b47 0%, #453a94 100%);
     position: absolute;
     top: -100px;
+    left: -250px;
+    animation: loaderAnim  .5s ease-in-out forwards ;
+
 }
+
+/*animation for the stick */
+@keyframes loaderAnim {
+    0%{
+        left: -250px;
+    }
+    100%{
+        left: 0;
+    }
+}
+@keyframes rotatAnim {
+    0%{
+        transform: rotate(-20deg);
+    }
+    100%{
+        transform: rotate(-40deg);
+    }
+}
+@keyframes loaderBgAnim {
+    0%{
+        opacity: 1;
+        transform: scale(1);
+    }
+    90%{
+        opacity: 0;
+
+    }
+    100%{
+        opacity: 0;
+
+        transform: scale(1.2);
+        display: none;
+    }
+
+}
+
+
+
+
+
 
 .revealer{
     width: 100%;
@@ -45,7 +91,31 @@ body{
     top: 0;
     left: 0;
     background: #988871;
+    transform: translateX(-100%);
+
+    animation: revealerAnim 1s ease-in-out forwards;
+    animation-delay: 2s;
 }
+
+
+@keyframes revealerAnim {
+    0%{
+        transform: translateX(-100%);
+    }
+    50%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(100%);
+        display: none;
+    }
+}
+
+
+
+
+
+
 
 .loader-text-wrapper{
     width: 100%;
@@ -57,6 +127,8 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: loaderText 2s ease-in-out forwards;
+    animation-delay: 0.5s;
 }
 .loader-text-wrapper .loader-text{
     color: #fff;
@@ -64,6 +136,21 @@ body{
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
+
+@keyframes loaderText {
+    0%{
+        display: none;
+    }
+    40%,80%{
+        display: flex;
+    }
+    100%{
+        display: none;
+    }
+
+}
+
+
 
 .bg-body{
     width: 100%;
@@ -78,53 +165,91 @@ body{
     height: 100vh;
     object-fit: cover;
 }
+
+@keyframes animImgBg {
+    0%{
+        display: none;
+    }
+
+}
+
+
 .main{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     position: relative;
+
 }
+
 .main .navbar{
     background: #ebe2d5;
     box-shadow: 0px 1px 5px #988871;
+    transform: translateY(-100%);
+    opacity: 0.1;
+    animation: animNav 1s ease-out forwards;
+    animation-delay: 2.5s;
 }
+
+@keyframes animNav {
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+}
+
 .main .navbar-toggler{
     border: 2px solid rgb(0, 0, 0);
 }
 .main .navbar-toggler:focus{
     box-shadow: none;
 }
+
+
 .image-header{
-    height: 100vh;
+    height: calc(100vh - 78px);
     background: #ebe2d5;
     display: flex;
     align-items: center;
     justify-content: start;
     flex-direction: column;
-    padding-top: 60px;
+    padding:10% 10%;
+    transform: translateX(-100%);
+    opacity: 0;
+    animation:animSide 1.5s ease-in-out forwards ;
+    animation-delay: 2.5s;
+}
+
+@keyframes animSide {
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
 
 }
-.image-header h2{
-    margin-bottom: 40px;
+
+.image-header h3{
+    margin-bottom: 20px;
     border: 2px solid black;
-    padding: 10px 15px;
+    padding: 5px 15px;
     border-radius: 15px;
     text-transform: uppercase;
 }
 .image-header p{
     margin-bottom: 20px;
     font-size: 18px;
-    font-weight: 600;
-    padding: 5px 20px;
+    font-weight: 500;
     text-transform: uppercase;
+    margin: 15px 0;
 }
 .image-header .imag-cont{
-    max-width: 300px;
-    max-height: 400px;
+    width: 250px;
+    height: 250px;
 }
 
 .imag-cont img{
     width: 100%;
-    height: 100;
+    height: 100%;
     object-fit: cover;
 }
 .main-btn{
